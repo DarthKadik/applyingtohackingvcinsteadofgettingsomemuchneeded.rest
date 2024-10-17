@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Kodastic Site</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        #loading-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #121212;
+            z-index: 100;
+        }
+
+        .loading-text {
+            font-size: 2em;
+            color: #00bcd4;
+            animation: blink 1.5s step-start infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        #video-container {
+            display: none;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        video {
+            width: 90%;
+            height: auto;
+            max-height: 80%;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .modern-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #121212;
+            background-color: #00bcd4;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .modern-button:hover {
+            background-color: #008c9e;
+        }
+
+        #answer-text {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            font-size: 1.2em;
+            color: #00bcd4;
+            text-align: center;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+            max-width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-container">
+        <div class="loading-text">Sit back, relax, and get ready for some cringe...</div>
+    </div>
+
+    <div id="video-container">
+        <video controls autoplay>
+            <source src="ifidontgetintothecourseiwillbereallysad.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button class="modern-button" onclick="toggleContent()">See my answer to question 2</button>
+        <div id="answer-text">I study tech and finance hoping to start a commercially viable project (call it startup if you will) one day. I have studied entrepreneurship in Hungary, at US Universities (Berkley, Lehigh), and in Turkey. In Finland, I have taken AVP's Startup Experience course along with various other relevant courses (for better or worse). All these learnings and the various books, podcasts, interviews, and frankly too many LinkedIn posts that I have consumed on the topic have given me a basic level of theoretical knowledge regarding VCs and startup funding in general. In a more hands on way, I have met various VCs and angel investors, mostly in the US. While never actually raised funds from a VC or private investors myself, as an Honored Guest of Texas and a US Alumnus, I lobbied (for the lack of a better word) at the Governor's office and in the US Senate for higher financial support for grassroots educational projects. In many ways this was similar to raising money for startups, as neither VCs nor politicians gamble their own money and their reputation is highly important. VCs are just more effective and less concerned with ideologies. </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            // Simulate a loading delay
+            setTimeout(() => {
+                const loadingContainer = document.getElementById('loading-container');
+                const videoContainer = document.getElementById('video-container');
+                
+                // Fade out the loading animation
+                loadingContainer.style.transition = 'opacity 1s ease-out';
+                loadingContainer.style.opacity = '0';
+
+                // After fading out, remove loading container and show video
+                setTimeout(() => {
+                    loadingContainer.style.display = 'none';
+                    videoContainer.style.display = 'flex';
+                    document.querySelector('video').style.display = 'block';
+                }, 1000);
+            }, 4000); // Loading time delay of 2 seconds
+        });
+
+        function toggleContent() {
+            const video = document.querySelector('video');
+            const answerText = document.getElementById('answer-text');
+            const button = document.querySelector('.modern-button');
+
+            if (video.style.display === 'none') {
+                answerText.style.display = 'none';
+                video.style.display = 'block';
+                button.textContent = 'See my answer to question 2';
+            } else {
+                video.style.display = 'none';
+                answerText.style.display = 'block';
+                button.textContent = 'See my answer to question 1';
+            }
+        }
+    </script>
+</body>
+</html>
