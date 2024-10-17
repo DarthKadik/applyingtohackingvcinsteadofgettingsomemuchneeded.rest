@@ -95,10 +95,7 @@
     </div>
 
     <div id="video-container">
-        <video controls autoplay>
-            <source src="ifidontgetintothecourseiwillbereallysad.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/BZ6SOOSG-ig?si=Do_4wjNzhhmgPpVw&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <button class="modern-button" onclick="toggleContent()">See my answer to question 2</button>
         <div id="answer-text">I study tech and finance hoping to start a commercially viable project (call it startup if you will) one day. I have studied entrepreneurship in Hungary, at US Universities (Berkley, Lehigh), and in Turkey. In Finland, I have taken AVP's Startup Experience course along with various other relevant courses (for better or worse). All these learnings and the various books, podcasts, interviews, and frankly too many LinkedIn posts that I have consumed on the topic have given me a basic level of theoretical knowledge regarding VCs and startup funding in general. In a more hands on way, I have met various VCs and angel investors, mostly in the US. While never actually raised funds from a VC or private investors myself, as an Honored Guest of Texas and a US Alumnus, I lobbied (for the lack of a better word) at the Governor's office and in the US Senate for higher financial support for grassroots educational projects. In many ways this was similar to raising money for startups, as neither VCs nor politicians gamble their own money and their reputation is highly important. VCs are just more effective and less concerned with ideologies. </div>
     </div>
@@ -118,13 +115,13 @@
                 setTimeout(() => {
                     loadingContainer.style.display = 'none';
                     videoContainer.style.display = 'flex';
-                    document.querySelector('video').style.display = 'block';
+                    document.querySelector('iframe').style.display = 'block';
                 }, 1000);
             }, 4000); // Loading time delay of 2 seconds
         });
 
         function toggleContent() {
-            const video = document.querySelector('video');
+            const video = document.querySelector('iframe');
             const answerText = document.getElementById('answer-text');
             const button = document.querySelector('.modern-button');
 
