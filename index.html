@@ -12,7 +12,7 @@
             width: 100%;
             height: 100%;
             font-family: Arial, sans-serif;
-            background-color: #121212;
+            background-color: #000;
             color: #ffffff;
             overflow: hidden;
         }
@@ -24,22 +24,43 @@
             width: 100%;
             height: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: #121212;
+            background-color: #000;
             z-index: 100;
+        }
+
+        .loading-note {
+            margin-top: 20px;
+            font-size: 1em;
+            color: #00bcd4;
+            text-align: center;
         }
 
         .loading-text {
             font-size: 2em;
-            color: #00bcd4;
-            animation: blink 1.5s step-start infinite;
+            color: #ffffff;
+            text-shadow: 0 0 20px #00bcd4, 0 0 40px #00bcd4, 0 0 60px #00bcd4;
+            animation: starry-fade 5s infinite, star-twinkle 2s infinite;
         }
 
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
+        @keyframes starry-fade {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes star-twinkle {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         #video-container {
@@ -82,42 +103,59 @@
             font-size: 1.2em;
             color: #00bcd4;
             text-align: center;
-            background-color: #1e1e1e;
+            background: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
             max-width: 80%;
+            animation: starry-appear 3s ease-in-out;
+            position: relative;
+        }
+
+        @keyframes starry-appear {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
     </style>
 </head>
 <body>
     <div id="loading-container">
         <div class="loading-text">Sit back, relax, and get ready for some cringe...</div>
+        <div class="loading-note">For the best experience, please view this site on a desktop.</div>
     </div>
 
     <div id="video-container">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/BZ6SOOSG-ig?si=huwsIUKmJ19j-BFA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <button class="modern-button" onclick="toggleContent()">See my answer to question 2</button>
-        <div id="answer-text">I study tech and finance hoping to start a commercially viable project (call it startup if you will) one day. I have studied entrepreneurship in Hungary, at US Universities (Berkley, Lehigh), and in Turkey. In Finland, I have taken AVP's Startup Experience course along with various other relevant courses (for better or worse). All these learnings and the various books, podcasts, interviews, and frankly too many LinkedIn posts that I have consumed on the topic have given me a basic level of theoretical knowledge regarding VCs and startup funding in general. In a more hands on way, I have met various VCs and angel investors, mostly in the US. While never actually raised funds from a VC or private investors myself, as an Honored Guest of Texas and a US Alumnus, I lobbied (for the lack of a better word) at the Governor's office and in the US Senate for higher financial support for grassroots educational projects. In many ways this was similar to raising money for startups, as neither VCs nor politicians gamble their own money and their reputation is highly important. VCs are just more effective and less concerned with ideologies. </div>
+        <div id="answer-text">
+            I study tech and finance hoping to start a commercially viable project (call it startup if you will) one day. I have studied entrepreneurship in Hungary, at US Universities (Berkley, Lehigh), and in Turkey. In Finland, I have taken AVP's Startup Experience course along with various other relevant courses (for better or worse). All these learnings and the numerous books, podcasts, interviews, and frankly too many LinkedIn posts that I have consumed on the topic have given me a basic level of theoretical knowledge regarding VCs and startup funding in general. In a more hands on way, I have met various VCs and angel investors, mostly in the US. While never actually raised funds from a VC or private investors myself, as an Honored Guest of Texas and a US Alumnus, I lobbied (for the lack of a better word) at the Governor's office and in the US Senate for higher financial support for grassroots educational projects. In many ways this was similar to raising money for startups, as neither VCs nor politicians gamble their own money and their reputation is highly important. VCs are just more effective and less concerned with ideologies.
+        </div>
     </div>
 
     <script>
         window.addEventListener('load', function() {
-            // Simulate a loading delay
             setTimeout(() => {
                 const loadingContainer = document.getElementById('loading-container');
                 const videoContainer = document.getElementById('video-container');
                 
-                // Fade out the loading animation
                 loadingContainer.style.transition = 'opacity 1s ease-out';
                 loadingContainer.style.opacity = '0';
 
-                // After fading out, remove loading container and show video
                 setTimeout(() => {
                     loadingContainer.style.display = 'none';
                     videoContainer.style.display = 'flex';
                     document.querySelector('iframe').style.display = 'block';
                 }, 1000);
-            }, 4000); // Loading time delay of 2 seconds
+            }, 4000);
         });
 
         function toggleContent() {
